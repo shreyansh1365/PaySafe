@@ -1,0 +1,81 @@
+How it could work
+1. USB is inserted
+
+Your monitor detects the USB immediately.
+
+USB Inserted
+↓
+Device Information Collected
+↓
+Status = Pending Approval
+=======================================================
+
+2. Dashboard updates
+
+Instead of immediately allowing access, the dashboard shows something like:
+
+🔔 New USB Detected
+
+Device Name : SanDisk Ultra USB 3.0
+Device Code : DEV002
+Serial No.  : XXXXX
+User        : SHREYANSH
+System      : LAPTOP-...
+Status      : Pending Approval
+
+Buttons:
+
+[✓ Allow]
+[✗ Block]
+[⏱ Allow 10 min]
+[⏱ Allow 30 min]
+[⏱ Allow 1 hour]
+=============================================================
+3. Admin chooses
+Allow
+Status → Allowed
+
+User can use the USB normally.
+
+Block
+Status → Blocked
+
+The software attempts to prevent access (this depends on OS permissions and how deeply you integrate with Windows).
+
+Allow for specific time
+
+For example:
+
+Allow for 30 minutes
+Your database stores
+
+approved_until
+
+2026-07-04 18:30:00
+
+A background task checks the time.
+
+After 30 minutes:
+
+USB automatically blocked
+==================================================================================
+
+Dashboard additions
+
+You could add a Pending Requests panel:
+
+Pending USB Requests
+
+Device      User       Time
+
+DEV002      SHREYANSH 22:15
+
+[Allow]
+[Block]
+[30 Min]
+Activity Log
+22:15 USB Inserted
+22:15 Waiting for Admin Approval
+22:16 Approved by Admin
+22:46 Permission Expired
+22:46 USB Blocked
